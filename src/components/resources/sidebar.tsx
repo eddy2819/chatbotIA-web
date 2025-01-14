@@ -3,15 +3,16 @@
 import * as React from "react"
 import Link from 'next/link'
 import Image from 'next/image'
-import { Home, MessageCircle, Bell, Settings, Users } from 'lucide-react'
+import { Home, MessageCircle, Bell, Settings, Users, FileText } from 'lucide-react'
 import { cn } from "@/lib/utils"
 
 import profilePic from '@/assets/profile-pic.png'
 
 
 const navigation = [
-  { name: "Inicio", href: "/clinica-history", icon: Home },
-  { name: "Pacientes", href: "/page", icon: Users },
+  { name: "Inicio", href: "/page", icon: Home },
+  { name: "Pacientes", href: "/home", icon: Users },
+  { name: "Exámenes", href: "/clinica-history", icon: FileText  },
   { name: "Chat", href: "/chat-page", icon: MessageCircle },
   { name: "Notificaciones", href: "#", icon: Bell },
   { name: "Configuración", href: "#", icon: Settings },
