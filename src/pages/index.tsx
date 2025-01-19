@@ -7,17 +7,31 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { login } from '@/services/config'; // Importa la función login
 
-import login from '@/assets/ia2.png';
+import loginImage from '@/assets/ia2.png';
+import { useRouter } from 'next/router';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const router = useRouter(); // Usa useRouter
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Add your login logic here
+        setError(null); // Resetea el error antes de intentar iniciar sesión
+
+        try {
+            const response = await login({ email, password });
+            console.log('Login successful:', response);
+            // Redirige al usuario o realiza alguna acción después del inicio de sesión exitoso
+            router.push('/page'); 
+        } catch (err) {
+            setError('Error al iniciar sesión. Por favor, verifica tus credenciales.');
+            console.error('Login error:', err);
+        }
     };
 
     return (
@@ -25,7 +39,7 @@ export default function LoginPage() {
             {/* Left side - Image */}
             <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-purple-50">
                 <Image
-                    src={login}
+                    src={loginImage}
                     alt="Illustration"
                     className="w-2/4 rounded-xl shadow-md"
                 />
@@ -34,8 +48,6 @@ export default function LoginPage() {
             {/* Right side - Login form */}
             <div className="w-full lg:w-1/2 flex flex-col items-center justify-center px-8 lg:px-16 bg-white">
                 <div className="w-full max-w-md">
-                    
-
                     {/* Heading */}
                     <h1 className="text-3xl font-bold text-center text-purple-700 mb-8">Welcome Back</h1>
 
@@ -68,22 +80,14 @@ export default function LoginPage() {
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
                                 <Checkbox id="remember" />
-                                <Label htmlFor="remember" className="text-sm">Remember me</Label>
+                                <Label htmlFor="remember">Remember me</Label>
                             </div>
-                            <Link
-                                href="/forgot-password"
-                                className="text-sm text-purple-600 hover:text-purple-500"
-                            >
-                                Forgot Password?
-                            </Link>
+                            <Link href="/forgot-password" className="text-sm text-purple-700 hover:underline">Forgot password?</Link>
                         </div>
 
-                        <Button
-                            type="submit"
-                            className="w-full bg-purple-700 hover:bg-purple-600 text-white font-semibold py-2"
-                        >
-                            Log In
-                        </Button>
+                        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+                        <Button type="submit" className="w-full">Login</Button>
                     </form>
                 </div>
             </div>
