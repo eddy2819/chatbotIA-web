@@ -26,7 +26,7 @@ interface Credentials {
     password: string;
 }
 
-export const login = async (credentials: Credentials) => {
+export const login = async (credentials: { email: string; password: string }) => {
     try {
         const response = await axios.post(`${API_URL}/login`, credentials);
         return response.data;
