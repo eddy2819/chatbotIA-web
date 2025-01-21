@@ -29,10 +29,6 @@ export default function Home() {
               <div className="flex gap-16">
                 {/* Left Section */}
                 <div className="flex-1">
-                  {/* Filter Section */}
-                  <div className="mb-6 bg-gray-50 p-4 rounded-lg shadow">
-                    <FilterBar />
-                  </div>
                   {/* Patient Table */}
                   <div className="bg-gray-50 p-4 rounded-lg shadow">
                     <PatientTable />

@@ -1,12 +1,13 @@
-"use client"
+'use client';
 
-import DashboardCalendar from "@/components/resources/dashboardCalendar"
-import DashboardHeader from "@/components/resources/dashboardHeader"
-import EmergencySection from "@/components/resources/emergencySection"
-import PatientLists from "@/components/resources/patientList"
-import { AppSidebar } from "@/components/resources/sidebar"
-import StatsCards from "@/components/resources/statsCards"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import DashboardCalendar from "@/components/resources/dashboardCalendar";
+import DashboardHeader from "@/components/resources/dashboardHeader";
+import EmergencySection from "@/components/resources/emergencySection";
+import PatientLists from "@/components/resources/patientList";
+import { AppSidebar } from "@/components/resources/sidebar";
+import StatsCards from "@/components/resources/statsCards";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import GlucoseChart from "@/components/resources/glucosechart"; // Importa GlucoseChart
 
 export default function DashboardPage() {
   return (
@@ -20,6 +21,9 @@ export default function DashboardPage() {
               <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
                 <div className="xl:col-span-3 space-y-6">
                   <StatsCards />
+                  <div className="bg-white rounded-lg shadow-sm p-6">
+                    <GlucoseChart /> {/* Añade el componente GlucoseChart */}
+                  </div>
                   <div className="bg-white rounded-lg shadow-sm p-6">
                     <EmergencySection />
                   </div>
@@ -38,6 +42,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </SidebarProvider>
-  )
+  );
 }
-

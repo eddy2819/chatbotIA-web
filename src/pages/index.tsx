@@ -27,7 +27,7 @@ export default function LoginPage() {
             const response = await login({ email, password });
             console.log('Login successful:', response);
             // Redirige al usuario o realiza alguna acción después del inicio de sesión exitoso
-            router.push('/page'); 
+            router.push('/page');
         } catch (err) {
             setError('Error al iniciar sesión. Por favor, verifica tus credenciales.');
             console.error('Login error:', err);
@@ -54,7 +54,7 @@ export default function LoginPage() {
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label htmlFor="email" className='text-black'>Email</Label>
                             <Input
                                 id="email"
                                 type="email"
@@ -62,11 +62,12 @@ export default function LoginPage() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
+                                style={{ color: 'black' }} // Estilo en línea para cambiar el color del texto
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
+                            <Label htmlFor="password" className='text-black'>Password</Label>
                             <Input
                                 id="password"
                                 type={showPassword ? "text" : "password"}
@@ -74,13 +75,14 @@ export default function LoginPage() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
+                                style={{ color: 'black' }} // Estilo en línea para cambiar el color del texto
                             />
                         </div>
 
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
                                 <Checkbox id="remember" />
-                                <Label htmlFor="remember">Remember me</Label>
+                                <Label htmlFor="remember" className='text-black'>Remember me</Label>
                             </div>
                             <Link href="/forgot-password" className="text-sm text-purple-700 hover:underline">Forgot password?</Link>
                         </div>
